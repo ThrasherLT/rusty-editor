@@ -173,7 +173,6 @@ impl CameraController {
         let global_transform = camera.global_transform();
         let look = global_transform.look();
         let side = global_transform.side();
-        let up = global_transform.up();
 
         let mut move_vec = Vector3::default();
         if self.move_forward {
@@ -193,7 +192,7 @@ impl CameraController {
         }
 
         move_vec += side * self.drag_side;
-        move_vec += up * self.drag_up;
+        move_vec.y += self.drag_up;
         self.drag_side = 0.0;
         self.drag_up = 0.0;
 
